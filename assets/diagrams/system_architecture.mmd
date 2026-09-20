@@ -1,0 +1,15 @@
+flowchart TB
+C[Customer Mobile UI] --> P[Flutter Presentation]
+S[Staff Web UI] --> P
+A[Admin Web UI] --> P
+P --> B[Cubit / BLoC]
+B --> U[Use Cases]
+U --> R[Repository Contracts]
+R --> SA[Supabase Auth / Data / Realtime]
+R --> EF[Edge Functions]
+SA --> DB[(PostgreSQL)]
+EF --> DB
+EF --> PAY[Payment Provider]
+EF --> PUSH[Push Provider]
+DB --> H[Minimal Realtime Hints]
+H --> B

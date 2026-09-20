@@ -1,0 +1,7 @@
+flowchart TB
+INPUT[QR Scan / Manual Code] --> AUTH[Authorized Validation]
+AUTH --> STATE[Load Current Ticket State]
+STATE --> OP[Stable Operation Reference]
+OP --> TX[Transactional Check-In]
+TX --> RESULT[Safe Result Projection]
+RESULT --> REFRESH[Authoritative Refresh]

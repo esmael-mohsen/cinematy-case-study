@@ -1,0 +1,22 @@
+sequenceDiagram
+participant C as Customer
+participant F as Flutter App
+participant B as Backend
+participant DB as PostgreSQL
+participant P as Paymob
+C->>F: Select showtime & seats
+F->>B: Create booking / hold
+B->>DB: Validate price + seat availability
+DB-->>B: Hold created
+B-->>F: Payment context
+F->>P: Start payment
+P-->>B: Provider callback
+B->>B: Validate & correlate callback
+B->>DB: Finalize transaction
+alt Original seats available
+DB-->>B: Confirm booking
+B-->>F: Confirmed ticket
+else Seats unavailable
+DB-->>B: Manual-review state
+B-->>F: Review required
+end

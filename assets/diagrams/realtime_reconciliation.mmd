@@ -1,0 +1,9 @@
+flowchart LR
+DB[(Authoritative DB)] --> H[Versioned Hint]
+H --> SUB[Screen Subscription]
+SUB --> REC[Reconciliation Controller]
+REC --> LOAD[Authorized Reload]
+LOAD --> GUARD[Scope / Generation Check]
+GUARD -->|Current| UI[Commit UI State]
+GUARD -->|Stale| DROP[Discard]
+TIMER[Periodic / Resume Fallback] --> REC
